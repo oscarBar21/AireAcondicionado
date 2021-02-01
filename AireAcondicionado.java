@@ -3,10 +3,10 @@ public class AireAcondicionado{
     private double min;
     private double max;
     private double incremento;
-    private int contadorTemp1;
-    private int contadorTemp2;
-    private double temperaturaSub;
-    private double temperaturaBaj;
+    private int contadorSubirTemperatura;
+    private int contadorBajarTemperatura;
+    private double temperaturaMaxSelec;
+    private double temperaturaMinSelec;
     
 
     public AireAcondicionado(double temperaturaMin, double temperaturaMax)
@@ -15,18 +15,18 @@ public class AireAcondicionado{
         min = temperaturaMin;
         max = temperaturaMax;
         incremento = 5.0;
-        contadorTemp1 = 0;
-        contadorTemp2 = 0;
-        temperaturaSub = temperatura;
-        temperaturaBaj = temperatura;
+        contadorSubirTemperatura = 0;
+        contadorBajarTemperatura = 0;
+        temperaturaMaxSelec = temperatura;
+        temperaturaMinSelec = temperatura;
     }
   
     public void subirTemperatura(){
         if(temperatura + incremento <= max){
             temperatura = temperatura + incremento;
-            contadorTemp1 = contadorTemp1 + 1;
-            if(temperatura > temperaturaSub){
-                temperaturaSub = temperatura;
+            contadorSubirTemperatura = contadorSubirTemperatura + 1;
+            if(temperatura > temperaturaMaxSelec){
+                temperaturaMaxSelec = temperatura;
             }
         }
     }
@@ -34,9 +34,9 @@ public class AireAcondicionado{
     public void bajarTemperatura(){
         if(temperatura - incremento >= min){
             temperatura= temperatura - incremento;
-            contadorTemp2 = contadorTemp2 + 1;
-            if(temperatura < temperaturaBaj){
-                temperaturaBaj = temperatura;
+            contadorBajarTemperatura = contadorBajarTemperatura + 1;
+            if(temperatura < temperaturaMinSelec){
+                temperaturaMinSelec = temperatura;
             }
         }
     }
@@ -52,18 +52,18 @@ public class AireAcondicionado{
     }
     
     public void mostrarEstadisticas(){
-        int tempCambiada = contadorTemp1 + contadorTemp2;
+        int tempCambiada = contadorSubirTemperatura + contadorBajarTemperatura;
         
         System.out.println(" Temperatura actual: " + temperatura + " - Temp. maxima posible: " + max + 
-                           " - Temp. minima posible: " + min + " - Temp. minima seleccionada: " +  temperaturaBaj +
-                           " - Temp. max seleccionada: " + temperaturaSub + " - Temperatura cambiada " + tempCambiada + " veces");
+                           " - Temp. minima posible: " + min + " - Temp. minima seleccionada: " +  temperaturaMinSelec +
+                           " - Temp. max seleccionada: " + temperaturaMaxSelec + " - Temperatura cambiada " + tempCambiada + " veces");
     }
     
     public String getDetalles(){
-        int tempCambiada = contadorTemp1 + contadorTemp2;
+        int tempCambiada = contadorSubirTemperatura + contadorBajarTemperatura;
         
         return " Temperatura actual: " + temperatura + " - Temp. maxima posible: " + max + 
-                           " - Temp. minima posible: " + min + " - Temp. minima seleccionada: " +  temperaturaBaj +
-                           " - Temp. max seleccionada: " + temperaturaSub + " - Temperatura cambiada " + tempCambiada + " veces";
+                           " - Temp. minima posible: " + min + " - Temp. minima seleccionada: " +  temperaturaMinSelec +
+                           " - Temp. max seleccionada: " + temperaturaMaxSelec + " - Temperatura cambiada " + tempCambiada + " veces";
     }
 }
